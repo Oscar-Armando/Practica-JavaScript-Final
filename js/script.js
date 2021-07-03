@@ -15,8 +15,59 @@ let monsters = [
 let foundMounster = 0;
 
 function randomGame(array)
-{
+ {
 	array.sort(() => Math.random() - 0.5);
-    console.log(array)
+    console.log(array);
+ }
+
+function setupGame () 
+{
+	found = 0;
+	randomGame(monsters);
 }
-    randomGame(monsters)
+
+function gameOver()
+ {
+	location.href = "/views/gameOver.html";
+ }
+	
+function gameWinner()
+ {
+	location.href = "/views/gameWinner.html";
+ }
+	
+function doorOpener (event) 
+ {
+	let btn = event.target.closest('[data-monster]');
+	if (!btn) return;
+	let monster = monsters[btn.getAttribute('data-monster')];
+	if (!monster) return;
+	
+	if (monster.name === 'sock') 
+		{
+			gameOver();
+			return;
+		}
+	
+	foundMounster++;
+	
+	if (foundMounster === (monsters.length - 1)) 
+		{
+			gameWinner();
+			return;
+		}
+	
+	let img = document.createElement('img');
+	img.src = `/svg/${monster.name}.svg`;
+	btn.replaceWith(img);
+	
+ }
+	 
+function clickHandler (event) 
+ {
+	doorOpener(event);
+ }
+    setupGame();
+	document.addEventListener('click', clickHandler);
+	
+	
