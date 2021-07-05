@@ -39,9 +39,7 @@ function gameWinner()
 function doorOpener (event) 
  {
 	let btn = event.target.closest('[data-monster]');
-	if (!btn) return;
 	let monster = monsters[btn.getAttribute('data-monster')];
-	if (!monster) return;
 	
 	if (monster.name === 'sock') 
 		{
