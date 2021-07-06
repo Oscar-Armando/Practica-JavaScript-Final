@@ -22,7 +22,7 @@ function randomGame(array)
 
 function setupGame () 
 {
-	found = 0;
+	foundMounster = 0;
 	randomGame(monsters);
 }
 
